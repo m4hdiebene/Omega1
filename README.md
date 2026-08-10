@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![OMEGA-1 Neo-Brutalist Interface](./public/hero.png)
+![OMEGA-1 Neo-Brutalist Interface](./public/omega1-preview.png)
 
 ### **"SOFTWARE IS DEAD. RECURSIVE AGI IS HERE."**
 
@@ -110,7 +110,7 @@ Built with a bold **Cyber-Brutalist / Neo-Brutalist** aesthetic, the platform fe
 ```text
 Omega1/
 ├── public/
-│   ├── hero.png            # Readme preview screenshot
+│   ├── omega1-preview.png  # Readme preview screenshot
 │   ├── favicon.svg         # Brutalist custom logo icon
 │   └── icons.svg
 ├── src/
