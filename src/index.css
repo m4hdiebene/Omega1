@@ -1,28 +1,40 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --bg-primary: #0a0a0c;
-    --bg-card: #121318;
-    --border-color: #27272a;
-    --text-primary: #f4f4f5;
-    --text-muted: #a1a1aa;
-    --accent-lime: #ccff00;
-    --accent-yellow: #ffe600;
-    --accent-magenta: #ff0055;
-    --accent-cyan: #00f0ff;
-    --shadow-hard: 5px 5px 0px #ccff00;
-    --shadow-black: 5px 5px 0px #000000;
-  }
+:root {
+  --bg-primary: #0a0a0c;
+  --bg-card: #121318;
+  --bg-dark-card: #050507;
+  --bg-secondary: #18181c;
+  --border-main: #ffffff;
+  --border-subtle: #27272a;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --shadow-color: #ccff00;
+  --shadow-secondary: #ff0055;
+  --shadow-black-color: #000000;
+}
 
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: 'JetBrains Mono', monospace, sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
+.light {
+  --bg-primary: #f4f4f0;
+  --bg-card: #ffffff;
+  --bg-dark-card: #eef0eb;
+  --bg-secondary: #e2e4de;
+  --border-main: #000000;
+  --border-subtle: #d1d5db;
+  --text-main: #000000;
+  --text-muted: #4b5563;
+  --shadow-color: #000000;
+  --shadow-secondary: #ff0055;
+  --shadow-black-color: #000000;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom Brutalist Utilities */
@@ -36,11 +48,11 @@
 
 /* Hard Brutalist Shadows */
 .brutal-shadow {
-  box-shadow: 6px 6px 0px 0px #ccff00;
+  box-shadow: 6px 6px 0px 0px var(--shadow-color);
 }
 
 .brutal-shadow-white {
-  box-shadow: 6px 6px 0px 0px #ffffff;
+  box-shadow: 6px 6px 0px 0px var(--border-main);
 }
 
 .brutal-shadow-black {
@@ -56,7 +68,7 @@
 }
 
 .brutal-shadow-sm {
-  box-shadow: 3px 3px 0px 0px #ccff00;
+  box-shadow: 3px 3px 0px 0px var(--shadow-color);
 }
 
 .brutal-shadow-sm-black {
@@ -70,31 +82,31 @@
 
 .brutal-btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0px 0px #ccff00;
+  box-shadow: 8px 8px 0px 0px var(--shadow-color);
 }
 
 .brutal-btn:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #ccff00;
+  box-shadow: 2px 2px 0px 0px var(--shadow-color);
 }
 
 /* Background Grid Pattern */
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(120, 120, 120, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120, 120, 120, 0.1) 1px, transparent 1px);
 }
 
 .bg-grid-pattern-lime {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(204, 255, 0, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(204, 255, 0, 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgba(204, 255, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(204, 255, 0, 0.12) 1px, transparent 1px);
 }
 
 .bg-dots-pattern {
-  background-image: radial-gradient(rgba(204, 255, 0, 0.25) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
@@ -124,16 +136,6 @@
   animation-play-state: paused;
 }
 
-/* Pulse / Glitch Text animations */
-@keyframes glitch-flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; color: #ff0055; }
-}
-
-.animate-glitch {
-  animation: glitch-flash 2s infinite ease-in-out;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -141,8 +143,8 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0c;
-  border-left: 2px solid #27272a;
+  background: var(--bg-primary);
+  border-left: 2px solid var(--border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {

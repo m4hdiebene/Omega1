@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import MarqueeTicker from './components/MarqueeTicker';
@@ -11,18 +11,31 @@ import Footer from './components/Footer';
 import ComputeStakingModal from './components/ComputeStakingModal';
 
 export default function App() {
+  const [theme, setTheme] = useState('dark');
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [scanlinesEnabled, setScanlinesEnabled] = useState(false);
   const [isStakingModalOpen, setIsStakingModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   const scrollToTerminal = () => {
     const el = document.getElementById('terminal');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const isDark = theme === 'dark';
+
   return (
-    <div className={`min-h-screen bg-[#0a0a0c] text-white selection:bg-[#ccff00] selection:text-black relative font-mono ${
-      scanlinesEnabled ? 'relative' : ''
+    <div className={`min-h-screen relative font-mono transition-colors ${
+      isDark ? 'bg-[#0a0a0c] text-white' : 'bg-[#f4f4f0] text-black'
     }`}>
       {/* CRT Scanline Overlay if enabled */}
       {scanlinesEnabled && (
@@ -35,11 +48,14 @@ export default function App() {
         setSoundEnabled={setSoundEnabled}
         scanlinesEnabled={scanlinesEnabled}
         setScanlinesEnabled={setScanlinesEnabled}
+        theme={theme}
+        setTheme={setTheme}
         onOpenStaking={() => setIsStakingModalOpen(true)}
       />
 
       {/* Hero Section */}
       <HeroSection
+        theme={theme}
         onOpenStaking={() => setIsStakingModalOpen(true)}
         onOpenTerminal={scrollToTerminal}
       />
@@ -48,29 +64,32 @@ export default function App() {
       <MarqueeTicker />
 
       {/* Module 01: Neural Core Canvas Visualizer */}
-      <NeuralCoreCanvas />
+      <NeuralCoreCanvas theme={theme} />
 
       {/* Module 02: Simulated Reasoning Terminal */}
-      <TerminalPlayground />
+      <TerminalPlayground theme={theme} />
 
       {/* Module 03: Architectural Blueprint */}
-      <ArchitectureBlueprint />
+      <ArchitectureBlueprint theme={theme} />
 
       {/* Module 04: Human Obsolescence & ROI Calculator */}
       <ComputeCalculator
+        theme={theme}
         onOpenStaking={() => setIsStakingModalOpen(true)}
       />
 
       {/* Module 05: AGI Manifesto & FAQ */}
-      <ManifestoSection />
+      <ManifestoSection theme={theme} />
 
       {/* Footer */}
       <Footer
+        theme={theme}
         onOpenStaking={() => setIsStakingModalOpen(true)}
       />
 
       {/* Compute Reservation Modal */}
       <ComputeStakingModal
+        theme={theme}
         isOpen={isStakingModalOpen}
         onClose={() => setIsStakingModalOpen(false)}
       />

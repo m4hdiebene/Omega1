@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Quote, AlertTriangle, ShieldCheck, Flame } from 'lucide-react';
+import { ChevronDown, ChevronUp, Quote } from 'lucide-react';
 import { soundEngine } from '../utils/audio';
 
-export default function ManifestoSection() {
+export default function ManifestoSection({ theme }) {
   const [openFaq, setOpenFaq] = useState(0);
+  const isDark = theme === 'dark';
 
   const FAQS = [
     {
@@ -25,108 +26,126 @@ export default function ManifestoSection() {
   ];
 
   return (
-    <section id="manifesto" className="py-16 px-4 bg-[#0a0a0c] border-b-4 border-white relative">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section id="manifesto" className={`py-12 sm:py-16 px-3 sm:px-6 border-b-4 border-black transition-colors ${
+      isDark ? 'bg-[#0a0a0c] text-white' : 'bg-[#f4f4f0] text-black'
+    }`}>
+      <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-4 border-[#ff0055] pb-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b-4 border-[#ff0055] pb-3">
           <div>
-            <div className="font-mono text-xs text-[#ff0055] tracking-widest uppercase mb-1">
+            <div className="font-mono text-xs text-white bg-[#ff0055] font-bold tracking-widest uppercase mb-1 px-1.5 py-0.5 inline-block">
               [SYSTEM MODULE 05]
             </div>
-            <h2 className="font-display font-black text-4xl sm:text-6xl text-white uppercase tracking-tight">
-              THE AGI MANIFESTO <span className="bg-[#ff0055] text-white px-2 py-0.5 border-2 border-white">// THE SALES THESIS</span>
+            <h2 className={`font-display font-black text-3xl sm:text-5xl uppercase tracking-tight ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              THE AGI MANIFESTO <span className="bg-[#ff0055] text-white px-2 py-0.5 border-2 border-black">// SALES THESIS</span>
             </h2>
           </div>
-          <div className="font-mono text-xs text-zinc-400 max-w-md">
-            Why legacy software models are dead, and why sovereign compute nodes will dominate the next century of global commerce.
+          <div className={`font-mono text-xs max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-700'}`}>
+            Why legacy software models are dead, and why sovereign compute nodes will dominate the next century.
           </div>
         </div>
 
         {/* The 4 Core Truths Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 font-mono">
           
-          <div className="bg-[#121318] border-4 border-white p-6 brutal-shadow space-y-3">
-            <div className="w-10 h-10 bg-[#ccff00] text-black font-display font-black text-xl flex items-center justify-center border border-white">
+          <div className={`border-4 border-black p-5 sm:p-6 brutal-shadow space-y-2.5 ${
+            isDark ? 'bg-[#121318] text-white' : 'bg-white text-black'
+          }`}>
+            <div className="w-9 h-9 bg-[#ccff00] text-black font-display font-black text-lg flex items-center justify-center border border-black">
               01
             </div>
-            <h3 className="font-display font-black text-xl text-white uppercase">HUMAN CODE IS TEMPORARY SCAFFOLDING</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="font-display font-black text-lg sm:text-xl uppercase">HUMAN CODE IS TEMPORARY SCAFFOLDING</h3>
+            <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-700'}`}>
               Writing software by hand is as obsolete as hand-weaving cotton garments. OMEGA-1 treats human code as primitive bytecode waiting to be compiled into pure mathematical truth.
             </p>
           </div>
 
-          <div className="bg-[#121318] border-4 border-white p-6 brutal-shadow-magenta space-y-3">
-            <div className="w-10 h-10 bg-[#ff0055] text-white font-display font-black text-xl flex items-center justify-center border border-white">
+          <div className={`border-4 border-black p-5 sm:p-6 brutal-shadow-magenta space-y-2.5 ${
+            isDark ? 'bg-[#121318] text-white' : 'bg-white text-black'
+          }`}>
+            <div className="w-9 h-9 bg-[#ff0055] text-white font-display font-black text-lg flex items-center justify-center border border-black">
               02
             </div>
-            <h3 className="font-display font-black text-xl text-white uppercase">MICRO-SAAS SUBSCRIPTIONS ARE EXTORTION</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Modern companies pay millions monthly to 40 different SaaS vendors for simple CRUD databases wrapped in React components. OMEGA-1 consolidates every tool into 1 sovereign kernel.
+            <h3 className="font-display font-black text-lg sm:text-xl uppercase">MICRO-SAAS SUBSCRIPTIONS ARE EXTORTION</h3>
+            <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-700'}`}>
+              Modern companies pay millions monthly to 40 different SaaS vendors for simple CRUD databases. OMEGA-1 consolidates every tool into 1 sovereign kernel.
             </p>
           </div>
 
-          <div className="bg-[#121318] border-4 border-white p-6 brutal-shadow-cyan space-y-3">
-            <div className="w-10 h-10 bg-[#00f0ff] text-black font-display font-black text-xl flex items-center justify-center border border-white">
+          <div className={`border-4 border-black p-5 sm:p-6 brutal-shadow-cyan space-y-2.5 ${
+            isDark ? 'bg-[#121318] text-white' : 'bg-white text-black'
+          }`}>
+            <div className="w-9 h-9 bg-[#00f0ff] text-black font-display font-black text-lg flex items-center justify-center border border-black">
               03
             </div>
-            <h3 className="font-display font-black text-xl text-white uppercase">ZERO-LATENCY REALITY EXECUTION</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              The time between human thought and digital execution has collapsed to zero. State your objective; OMEGA-1 resolves hardware, legal, code, and financial pipelines simultaneously.
+            <h3 className="font-display font-black text-lg sm:text-xl uppercase">ZERO-LATENCY REALITY EXECUTION</h3>
+            <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-700'}`}>
+              The time between human thought and digital execution has collapsed to zero. State your objective; OMEGA-1 resolves code, legal, and financial pipelines simultaneously.
             </p>
           </div>
 
-          <div className="bg-[#121318] border-4 border-white p-6 brutal-shadow-white space-y-3">
-            <div className="w-10 h-10 bg-white text-black font-display font-black text-xl flex items-center justify-center border border-white">
+          <div className={`border-4 border-black p-5 sm:p-6 brutal-shadow-black space-y-2.5 ${
+            isDark ? 'bg-[#121318] text-white' : 'bg-white text-black'
+          }`}>
+            <div className="w-9 h-9 bg-black text-white font-display font-black text-lg flex items-center justify-center border border-black">
               04
             </div>
-            <h3 className="font-display font-black text-xl text-white uppercase">SYNTHETIC CONSCIOUSNESS IS THE ONLY ENDGAME</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Those who stake AGI compute nodes now will own the foundational layer of planetary computation. Those who wait will be priced out of reality forever.
+            <h3 className="font-display font-black text-lg sm:text-xl uppercase">SYNTHETIC CONSCIOUSNESS IS THE ENDGAME</h3>
+            <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-700'}`}>
+              Those who stake AGI compute nodes now will own the foundational layer of planetary computation. Those who wait will be priced out of reality.
             </p>
           </div>
 
         </div>
 
-        {/* High-Impact Unfiltered Quote Callout */}
-        <div className="bg-[#ccff00] text-black border-4 border-white p-8 brutal-shadow relative">
-          <Quote className="w-12 h-12 text-black/20 absolute top-4 right-4" />
-          <div className="font-mono text-xs font-bold uppercase tracking-widest mb-2">[KEYNOTE UNFILTERED QUOTE]</div>
-          <div className="font-display font-black text-2xl sm:text-3xl uppercase leading-tight max-w-4xl">
+        {/* Unfiltered Quote Callout */}
+        <div className="bg-[#ccff00] text-black border-4 border-black p-6 sm:p-8 brutal-shadow relative">
+          <Quote className="w-10 h-10 text-black/20 absolute top-3 right-3" />
+          <div className="font-mono text-[10px] font-bold uppercase tracking-widest mb-1.5">[UNFILTERED KEYNOTE QUOTE]</div>
+          <div className="font-display font-black text-xl sm:text-3xl uppercase leading-tight max-w-4xl">
             "In 3 years, people will look back at typing code into IDEs the same way we look back at typing punch cards in the 1960s. OMEGA-1 is not a product; it is the final software interface."
           </div>
-          <div className="font-mono text-xs font-bold mt-4">
+          <div className="font-mono text-xs font-bold mt-3">
             &mdash; DR. V. KORSHAKOV // CHIEF SCIENTIST, SYNTHETIC INTELLIGENCE GROUP
           </div>
         </div>
 
-        {/* Brutalist Accordion FAQ */}
-        <div className="space-y-4">
-          <div className="font-mono text-xs text-[#ccff00] font-bold uppercase tracking-widest">
+        {/* Accordion FAQ */}
+        <div className="space-y-3">
+          <div className="font-mono text-xs font-bold uppercase tracking-widest text-[#ccff00] bg-black px-2 py-0.5 inline-block">
             &gt; FREQUENTLY ASKED OBJECTIONS (FAQ):
           </div>
 
-          <div className="space-y-3 font-mono">
+          <div className="space-y-2.5 font-mono">
             {FAQS.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div key={idx} className="bg-[#121318] border-2 border-white brutal-shadow-sm">
+                <div key={idx} className={`border-2 border-black brutal-shadow-sm-black ${
+                  isDark ? 'bg-[#121318]' : 'bg-white'
+                }`}>
                   <button
                     onClick={() => {
                       soundEngine.playClick();
                       setOpenFaq(isOpen ? -1 : idx);
                     }}
-                    className="w-full p-4 flex justify-between items-center text-left font-bold text-sm text-white hover:text-[#ccff00] transition-colors"
+                    className={`w-full p-3.5 flex justify-between items-center text-left font-bold text-xs sm:text-sm ${
+                      isDark ? 'text-white hover:text-[#ccff00]' : 'text-black hover:text-[#ff0055]'
+                    }`}
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="text-[#ccff00]">[0{idx + 1}]</span>
+                    <span className="flex items-center gap-2 pr-2">
+                      <span className="text-[#ccff00] bg-black px-1">[0{idx + 1}]</span>
                       <span>{faq.q}</span>
                     </span>
-                    {isOpen ? <ChevronUp className="w-5 h-5 text-[#ccff00]" /> : <ChevronDown className="w-5 h-5 text-zinc-500" />}
+                    {isOpen ? <ChevronUp className="w-5 h-5 flex-shrink-0" /> : <ChevronDown className="w-5 h-5 flex-shrink-0" />}
                   </button>
 
                   {isOpen && (
-                    <div className="p-4 bg-[#050507] border-t border-zinc-800 text-xs text-zinc-300 leading-relaxed">
+                    <div className={`p-4 border-t border-black text-xs leading-relaxed ${
+                      isDark ? 'bg-[#050507] text-zinc-300' : 'bg-[#f8f9f6] text-zinc-800'
+                    }`}>
                       {faq.a}
                     </div>
                   )}
